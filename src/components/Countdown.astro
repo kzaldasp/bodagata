@@ -1,0 +1,79 @@
+---
+// src/components/Countdown.astro
+// Enlace para crear evento en Google Calendar (Formato UTC. 13:00 de Ecuador son las 18:00 UTC)
+const calendarLink = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Jos%C3%A9+David+y+Jenny+Elizabeth&dates=20260328T180000Z/20260328T230000Z&details=Acompa%C3%B1anos+a+celebrar+nuestra+boda.&location=Qhawana+Aventura,+Puembo,+Quito";
+---
+
+<section class="py-20 md:py-28 px-6 text-center bg-[#f2f4f1] relative">
+    
+    <p class="font-sans text-[10px] md:text-xs tracking-[0.3em] text-[#6b7c6d] uppercase mb-6 font-medium">
+        Reserva la fecha
+    </p>
+    <h2 class="font-script text-5xl md:text-6xl text-[#4a594c] mb-12">Falta muy poco</h2>
+    
+    <div class="flex justify-center gap-3 md:gap-6 font-serif text-[#4a594c] max-w-3xl mx-auto">
+        <div class="bg-white px-3 py-5 md:py-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] w-20 md:w-28 flex flex-col items-center">
+            <span id="days" class="text-4xl md:text-6xl mb-1 md:mb-2">00</span>
+            <span class="font-sans text-[9px] md:text-xs uppercase tracking-widest text-gray-500">Días</span>
+        </div>
+        <div class="text-3xl md:text-5xl flex items-center text-[#c4d1c6] font-light pb-6">:</div>
+        <div class="bg-white px-3 py-5 md:py-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] w-20 md:w-28 flex flex-col items-center">
+            <span id="hours" class="text-4xl md:text-6xl mb-1 md:mb-2">00</span>
+            <span class="font-sans text-[9px] md:text-xs uppercase tracking-widest text-gray-500">Hrs</span>
+        </div>
+        <div class="text-3xl md:text-5xl flex items-center text-[#c4d1c6] font-light pb-6">:</div>
+        <div class="bg-white px-3 py-5 md:py-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] w-20 md:w-28 flex flex-col items-center">
+            <span id="minutes" class="text-4xl md:text-6xl mb-1 md:mb-2">00</span>
+            <span class="font-sans text-[9px] md:text-xs uppercase tracking-widest text-gray-500">Min</span>
+        </div>
+        <div class="text-3xl md:text-5xl flex items-center text-[#c4d1c6] font-light pb-6 hidden md:flex">:</div>
+        <div class="bg-white px-3 py-5 md:py-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] w-20 md:w-28 flex-col items-center hidden md:flex">
+            <span id="seconds" class="text-4xl md:text-6xl mb-1 md:mb-2">00</span>
+            <span class="font-sans text-[9px] md:text-xs uppercase tracking-widest text-gray-500">Seg</span>
+        </div>
+    </div>
+
+    <div class="mt-14">
+        <a href={calendarLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 border border-[#8b9b8d] text-[#4a594c] font-sans text-xs md:text-sm tracking-widest uppercase py-4 px-8 rounded-full hover:bg-[#8b9b8d] hover:text-white transition-colors duration-300">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            Agendar en Google Calendar
+        </a>
+    </div>
+
+</section>
+
+<script>
+    // Fecha de la boda: 28 de Marzo de 2026 a las 13:00 (1:00 PM)
+    const countDownDate = new Date("Mar 28, 2026 13:00:00").getTime();
+
+    const updateCountdown = () => {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+
+        if (distance < 0) {
+            document.getElementById("days")!.innerText = "00";
+            document.getElementById("hours")!.innerText = "00";
+            document.getElementById("minutes")!.innerText = "00";
+            const secondsEl = document.getElementById("seconds");
+            if(secondsEl) secondsEl.innerText = "00";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days")!.innerText = days.toString().padStart(2, '0');
+        document.getElementById("hours")!.innerText = hours.toString().padStart(2, '0');
+        document.getElementById("minutes")!.innerText = minutes.toString().padStart(2, '0');
+        
+        const secondsEl = document.getElementById("seconds");
+        if(secondsEl) secondsEl.innerText = seconds.toString().padStart(2, '0');
+    };
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); 
+</script>

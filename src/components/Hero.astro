@@ -1,0 +1,55 @@
+---
+// src/components/Hero.astro
+const imageUrl = "https://www.lissnerweddingplanner.com/wp-content/uploads/2025/08/Novios-Catolicos-scaled.jpg";
+---
+
+<section class="relative min-h-[95vh] flex flex-col items-center justify-center pt-12 pb-20 px-6 md:px-12 text-center overflow-hidden bg-[#fafaf9]">
+	
+	<div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#e8ece7] to-transparent opacity-80 pointer-events-none"></div>
+	<div class="absolute -top-20 -right-20 w-64 h-64 bg-[#e8ece7] rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+	<div class="absolute top-40 -left-20 w-72 h-72 bg-[#e8ece7] rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+
+	<p class="font-sans text-[10px] md:text-xs tracking-[0.3em] text-[#6b7c6d] uppercase mb-10 relative z-10 font-medium">
+		Nuestra Boda
+	</p>
+
+	<div class="w-64 h-[22rem] md:w-[26rem] md:h-[34rem] rounded-t-full overflow-hidden border-[8px] border-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] mb-12 relative z-10 transform transition-transform duration-1000 hover:scale-[1.02]">
+		<img src={imageUrl} alt="José David y Jenny Elizabeth" class="w-full h-full object-cover object-top" />
+	</div>
+
+	<div class="relative z-10 flex flex-col items-center">
+		<h1 class="font-script text-7xl md:text-8xl lg:text-9xl text-[#4a594c] leading-none drop-shadow-sm">
+			José David
+		</h1>
+		
+		<div class="flex items-center gap-4 my-2 md:my-0">
+			<div class="w-12 h-px bg-[#c4d1c6]"></div>
+			<span class="font-script text-4xl md:text-6xl text-[#8b9b8d]">&</span>
+			<div class="w-12 h-px bg-[#c4d1c6]"></div>
+		</div>
+		
+		<h1 class="font-script text-7xl md:text-8xl lg:text-9xl text-[#4a594c] leading-none drop-shadow-sm">
+			Jenny Elizabeth
+		</h1>
+	</div>
+
+	<p class="font-serif text-lg md:text-2xl text-gray-500 mt-10 md:mt-12 italic max-w-lg mx-auto px-4 relative z-10 leading-relaxed">
+		"El día más esperado de nuestras vidas finalmente ha llegado."
+	</p>
+
+	<div class="mt-12 relative z-10 flex items-center justify-center gap-6 md:gap-12 font-sans text-[#4a594c]">
+		<div class="text-right">
+			<p class="text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium">Sábado</p>
+		</div>
+		<div class="w-px h-12 bg-[#c4d1c6]"></div>
+		<div class="text-4xl md:text-5xl font-serif font-semibold text-[#4a594c]">
+			28
+		</div>
+		<div class="w-px h-12 bg-[#c4d1c6]"></div>
+		<div class="text-left">
+			<p class="text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium">Marzo</p>
+			<p class="text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium text-[#8b9b8d]">2026</p>
+		</div>
+	</div>
+
+</section>

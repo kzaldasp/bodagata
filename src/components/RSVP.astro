@@ -1,0 +1,29 @@
+---
+// src/components/RSVP.astro
+import { Icon } from 'astro-icon/components';
+
+const whatsappNumber = "593978815179";
+const whatsappMessage = encodeURI("¡Hola! Quiero confirmar mi asistencia a la boda de José David y Jenny Elizabeth. 🤍");
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+---
+
+<section class="py-24 md:py-32 px-6 text-center bg-[#f2f4f1]">
+    <div class="max-w-3xl mx-auto">
+        
+        <Icon name="ph:envelope-open-light" class="w-12 h-12 mx-auto text-[#8b9b8d] mb-8" />
+        
+        <h2 class="font-script text-6xl md:text-8xl text-[#4a594c] mb-8 drop-shadow-sm">
+            ¡Tenemos todo listo!
+        </h2>
+        
+        <p class="font-serif text-xl md:text-2xl text-gray-600 mb-14 leading-relaxed">
+            Nuestra felicidad solo estará completa si nos acompañas.<br class="hidden md:block"> Por favor confirma tu asistencia.
+        </p>
+
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-[#4a594c] text-white font-sans text-sm md:text-base font-semibold tracking-widest uppercase py-5 px-10 rounded-full shadow-[0_10px_30px_rgba(74,89,76,0.2)] hover:bg-[#8b9b8d] hover:shadow-[0_10px_30px_rgba(139,155,141,0.4)] hover:-translate-y-1 transition-all duration-300">
+            <Icon name="mdi:whatsapp" class="w-6 h-6 md:w-7 md:h-7" />
+            Confirmar Asistencia
+        </a>
+        
+    </div>
+</section>

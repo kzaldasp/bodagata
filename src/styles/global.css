@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fuente para detalles limpios y modernos */
+  --font-sans: "Montserrat", sans-serif;
+  
+  /* Fuente elegante para fechas y frases */
+  --font-serif: "Playfair Display", serif;
+  
+  /* Fuente manuscrita premium para nombres y títulos */
+  --font-script: "Pinyon Script", cursive;
+}
