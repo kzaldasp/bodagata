@@ -2,7 +2,7 @@
 // src/components/RSVP.astro
 import { Icon } from 'astro-icon/components';
 
-const whatsappNumber = "593984205259";
+const whatsappNumber = "593984205259"; // NÚMERO ACTUALIZADO
 
 // Mensaje base (si entran al link sin el parámetro 's')
 const baseMessage = "¡Hola! Quiero confirmar mi asistencia a la boda de José David y Jenny Elizabeth. 🤍";
@@ -71,7 +71,7 @@ const declineLink = `https://wa.me/${whatsappNumber}?text=${encodeURI(declineMes
         // 4. Inyectamos el número en el botón de WhatsApp
         const btnConfirmar = document.getElementById('btn-confirmar') as HTMLAnchorElement;
         if (btnConfirmar) {
-            const numeroWs = "593978815179";
+            const numeroWs = "593984205259"; // <--- AQUÍ ESTÁ EL NÚMERO YA CORREGIDO
             const textoWs = `¡Hola! Quiero confirmar mi asistencia a la boda de José David y Jenny Elizabeth. Seremos ${pases} persona(s) en total. 🤍`;
             btnConfirmar.href = `https://wa.me/${numeroWs}?text=${encodeURIComponent(textoWs)}`;
         }
