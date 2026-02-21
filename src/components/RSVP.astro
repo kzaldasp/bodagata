@@ -2,15 +2,15 @@
 // src/components/RSVP.astro
 import { Icon } from 'astro-icon/components';
 
-const whatsappNumber = "593984205259";
+const whatsappNumber = "593978815179";
 
-// Mensaje para confirmar (Botón Principal)
-const confirmMessage = encodeURI("¡Hola! Quiero confirmar mi asistencia a la boda de José David y Jenny Elizabeth. 🤍");
-const confirmLink = `https://wa.me/${whatsappNumber}?text=${confirmMessage}`;
+// Mensaje base (si entran al link sin el parámetro 's')
+const baseMessage = "¡Hola! Quiero confirmar mi asistencia a la boda de José David y Jenny Elizabeth. 🤍";
+const confirmLink = `https://wa.me/${whatsappNumber}?text=${encodeURI(baseMessage)}`;
 
-// Mensaje para declinar elegantemente (Botón Secundario)
-const declineMessage = encodeURI("¡Hola! Agradezco muchísimo la invitación a su boda. Lamentablemente no podré acompañarlos físicamente, pero les envío mis mejores deseos en esta nueva etapa. ¡Muchas felicidades a José David y Jenny Elizabeth! ✨");
-const declineLink = `https://wa.me/${whatsappNumber}?text=${declineMessage}`;
+// Mensaje para declinar
+const declineMessage = "¡Hola! Agradezco muchísimo la invitación a su boda. Lamentablemente no podré acompañarlos físicamente, pero les envío mis mejores deseos en esta nueva etapa. ¡Muchas felicidades! ✨";
+const declineLink = `https://wa.me/${whatsappNumber}?text=${encodeURI(declineMessage)}`;
 ---
 
 <section class="py-24 md:py-32 px-6 text-center bg-[#f2f4f1]">
@@ -18,17 +18,25 @@ const declineLink = `https://wa.me/${whatsappNumber}?text=${declineMessage}`;
         
         <Icon name="ph:envelope-open-light" class="w-12 h-12 mx-auto text-[#8b9b8d] mb-8" />
         
-        <h2 class="font-script text-6xl md:text-8xl text-[#4a594c] mb-8 drop-shadow-sm">
+        <h2 class="font-script text-6xl md:text-8xl text-[#4a594c] mb-6 drop-shadow-sm">
             ¡Tenemos todo listo!
         </h2>
         
-        <p class="font-serif text-xl md:text-2xl text-gray-600 mb-14 leading-relaxed">
+        <p class="font-serif text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
             Nuestra felicidad solo estará completa si nos acompañas.<br class="hidden md:block"> Por favor, confirma tu asistencia.
         </p>
 
+        <div id="pases-badge" class="hidden justify-center mb-10">
+            <div class="inline-flex items-center gap-2 text-[#6b7c6d] bg-white border border-[#e3e9e3] px-4 py-2 rounded-full shadow-sm">
+                <Icon name="ph:ticket-light" class="w-4 h-4 md:w-5 md:h-5" />
+                <span class="font-sans text-[10px] md:text-xs tracking-widest uppercase font-medium">
+                    Pases: <span id="pases-number" class="font-bold text-[#4a594c] text-sm md:text-base ml-1">1</span>
+                </span>
+            </div>
+        </div>
+
         <div class="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-8">
-            
-            <a href={confirmLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-[#4a594c] text-white font-sans text-sm md:text-base font-semibold tracking-widest uppercase py-5 px-10 rounded-full shadow-[0_10px_30px_rgba(74,89,76,0.2)] hover:bg-[#8b9b8d] hover:shadow-[0_10px_30px_rgba(139,155,141,0.4)] hover:-translate-y-1 transition-all duration-300 w-full md:w-auto">
+            <a id="btn-confirmar" href={confirmLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-[#4a594c] text-white font-sans text-sm md:text-base font-semibold tracking-widest uppercase py-5 px-10 rounded-full shadow-[0_10px_30px_rgba(74,89,76,0.2)] hover:bg-[#8b9b8d] hover:shadow-[0_10px_30px_rgba(139,155,141,0.4)] hover:-translate-y-1 transition-all duration-300 w-full md:w-auto">
                 <Icon name="mdi:whatsapp" class="w-6 h-6 md:w-7 md:h-7" />
                 Confirmar Asistencia
             </a>
@@ -37,8 +45,35 @@ const declineLink = `https://wa.me/${whatsappNumber}?text=${declineMessage}`;
                 <Icon name="ph:hand-heart-light" class="w-5 h-5 md:w-6 md:h-6" />
                 No podré asistir
             </a>
-
         </div>
         
     </div>
 </section>
+
+<script>
+    // 1. Buscamos el parámetro sutil "?s=X" en la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const pases = urlParams.get('s'); 
+
+    // 2. Verificamos que exista y sea un número válido
+    if (pases && !isNaN(Number(pases))) {
+        
+        const badge = document.getElementById('pases-badge');
+        const numberSpan = document.getElementById('pases-number');
+        
+        // 3. Mostramos la pequeña etiqueta visual
+        if (badge && numberSpan) {
+            badge.classList.remove('hidden');
+            badge.classList.add('flex');
+            numberSpan.innerText = pases;
+        }
+
+        // 4. Inyectamos el número en el botón de WhatsApp
+        const btnConfirmar = document.getElementById('btn-confirmar') as HTMLAnchorElement;
+        if (btnConfirmar) {
+            const numeroWs = "593978815179";
+            const textoWs = `¡Hola! Quiero confirmar mi asistencia a la boda de José David y Jenny Elizabeth. Seremos ${pases} persona(s) en total. 🤍`;
+            btnConfirmar.href = `https://wa.me/${numeroWs}?text=${encodeURIComponent(textoWs)}`;
+        }
+    }
+</script>
