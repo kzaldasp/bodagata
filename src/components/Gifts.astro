@@ -1,0 +1,30 @@
+---
+// src/components/Gifts.astro
+import { Icon } from 'astro-icon/components';
+---
+
+<section class="py-20 md:py-28 px-6 text-center bg-[#f2f4f1]">
+    <div class="max-w-3xl mx-auto flex flex-col items-center">
+        
+        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-6 border border-[#e3e9e3]">
+            <Icon name="ph:gift-light" class="w-8 h-8 text-[#8b9b8d]" />
+        </div>
+        
+        <h2 class="font-script text-5xl md:text-6xl text-[#4a594c] mb-8 drop-shadow-sm">
+            Obsequios
+        </h2>
+        
+        <p class="font-serif text-lg md:text-xl text-gray-600 leading-relaxed mb-10">
+            El mejor regalo para nosotros es contar con su presencia en este día tan especial. <br class="hidden md:block" />
+            Sin embargo, si desean tener un detalle adicional, el día del evento contaremos con un buzón para:
+        </p>
+        
+        <div class="inline-flex items-center gap-4 border border-[#c4d1c6] px-8 py-5 rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.03)] transform transition-transform hover:scale-105">
+            <Icon name="ph:envelope-simple-light" class="w-7 h-7 text-[#4a594c]" />
+            <span class="font-sans text-sm md:text-base font-semibold tracking-widest uppercase text-[#4a594c]">
+                Lluvia de Sobres
+            </span>
+        </div>
+        
+    </div>
+</section>
